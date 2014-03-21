@@ -25,6 +25,14 @@ describe Item do
     end
   end
 
+  describe '#delete' do
+    it 'deletes an instance of item' do
+      new_item = Item.create({:description => "Peter", :amount => 1.21, :category_id => 1, :purchase_date => '11/13/2013'})
+      new_item.delete
+      Item.all.length.should eq 0
+    end
+  end
+
   describe '#==' do
     it 'tells you that two instances with the same values are equal' do
       new_item = Item.new({:description => 'Monkey', :amount => 2.50, :purchase_date => "1/2/2012", :id => 1})

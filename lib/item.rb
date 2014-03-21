@@ -32,7 +32,11 @@ class Item
 
   def save
     results = DB.exec("INSERT INTO items (description, amount, purchase_date, category_id) VALUES ('#{@description}', '#{amount}', '#{purchase_date}', '#{category_id}') RETURNING id;")
-    @id = id
+    @id = results
+  end
+
+  def delete
+    DB.exec("DELETE FROM items WHERE id = #{@id};")
   end
 
   def ==(another_item)
